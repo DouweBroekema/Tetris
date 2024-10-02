@@ -43,6 +43,9 @@ class GameWorld
         random = new Random();
         gameState = GameState.Playing;
         //comment
+        //extra comment
+
+         Random newrandom = new Random();
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
