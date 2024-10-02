@@ -42,7 +42,7 @@ class GameWorld
     {
         random = new Random();
         gameState = GameState.Playing;
-
+        //comment
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
