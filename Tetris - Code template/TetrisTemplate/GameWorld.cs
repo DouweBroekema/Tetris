@@ -45,6 +45,7 @@ class GameWorld
         //comment
         //extra comment
 
+        // Test 123
          Random newrandom = new Random();
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 

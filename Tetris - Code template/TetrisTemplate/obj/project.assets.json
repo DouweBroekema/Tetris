@@ -102,19 +102,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\basvd\\.nuget\\packages\\": {}
+    "C:\\Users\\Belee\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\basvd\\OneDrive\\Bureaublad\\Monogame school\\Fase 2 - tetris\\Tetris\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisTemplate.csproj",
+      "projectUniqueName": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisTemplate.csproj",
       "projectName": "TetrisTemplate",
-      "projectPath": "C:\\Users\\basvd\\OneDrive\\Bureaublad\\Monogame school\\Fase 2 - tetris\\Tetris\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisTemplate.csproj",
-      "packagesPath": "C:\\Users\\basvd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\basvd\\OneDrive\\Bureaublad\\Monogame school\\Fase 2 - tetris\\Tetris\\Tetris\\Tetris - Code template\\TetrisTemplate\\obj\\",
+      "projectPath": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisTemplate.csproj",
+      "packagesPath": "C:\\Users\\Belee\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\basvd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Belee\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -122,6 +127,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -134,6 +140,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -165,7 +176,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

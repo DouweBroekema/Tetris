@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|c:\\users\\belee\\documents\\vak_gameprogramming\\prac\\prac2\\tetris\\tetris - code template\\tetristemplate\\gameworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|solutionrelative:tetristemplate\\gameworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameWorld.cs",
+              "DocumentMoniker": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\GameWorld.cs",
+              "RelativeDocumentMoniker": "TetrisTemplate\\GameWorld.cs",
+              "ToolTip": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\GameWorld.cs",
+              "RelativeToolTip": "TetrisTemplate\\GameWorld.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T13:38:51.901Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
