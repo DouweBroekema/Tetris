@@ -60,10 +60,7 @@ class TetrisGrid
     public enum GridCellInfo
     {
         Empty,
-        Red,
-        Yellow,
-        Greem,
-        Blue
+        Occupied
     }
 
 
