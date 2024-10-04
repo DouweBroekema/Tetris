@@ -41,31 +41,16 @@ namespace TetrisTemplate
             }
 
 
-        }    
+        }
 
         public void Rotate(bool clockWise)
         {
 
             currentRotation += 90;
             if (currentRotation >= 360) currentRotation = 0;
+            Debug.WriteLine(currentRotation);
 
-            bool[,] tempBlock = BlockInfo;
-
-            /*
-            // Rotating block info.         
-            for (int x = 0; x < BlockInfo.GetLength(0); x++) 
-            {
-                for (int y = 0; y < BlockInfo.GetLength(1); y++)
-                {                  
-                    tempBlock[x, y] = BlockInfo[y, x];
-                    //else tempGrid[x, y] = BlockInfo[BlockInfo.GetLength(0) - y, BlockInfo.GetLength(1) - x];
-                    row += BlockInfo[x, y];
-                }
-
-                Debug.WriteLine(row);
-            }
-
-            */
+            bool[,] tempBlock = new bool[4, 4];
 
             for (int x = 0; x < BlockInfo.GetLength(0); x++)
             {
@@ -78,6 +63,23 @@ namespace TetrisTemplate
 
 
             BlockInfo = tempBlock;
+            tempBlock = new bool[4, 4];
+
+            //if (currentRotation >= 180 || currentRotation == 0)
+            if (currentRotation >= 180 || currentRotation == 0)
+            {
+                for (int x = 0; x < BlockInfo.GetLength(0); x++)
+                {
+                    for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                    {
+                        tempBlock[x, y] = BlockInfo[BlockInfo.GetLength(0) - 1 - x, y];
+                    }
+
+                }
+
+                BlockInfo = tempBlock;
+
+            }
 
 
             for (int x = 0; x < BlockInfo.GetLength(0); x++)
@@ -85,7 +87,7 @@ namespace TetrisTemplate
                 for(int y = 0; y < BlockInfo.GetLength(1); y++)
                 {
                     if (BlockInfo[x, y] == true) TetrisGrid.Grid[x + 5, y + 5] = TetrisGrid.GridCellInfo.Occupied;
-
+                    else TetrisGrid.Grid[x + 5, y + 5] = TetrisGrid.GridCellInfo.Empty;
                 }
             }
 

@@ -57,6 +57,7 @@ namespace TetrisTemplate
             else spriteBatch.Draw(cellTexture, new Vector2(Width * emptyCell.Width, Height * emptyCell.Height), Color.Black);
 
         }
+
         public void Clear()
         {
 
