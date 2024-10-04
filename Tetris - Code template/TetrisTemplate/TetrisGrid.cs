@@ -1,48 +1,71 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Reflection.Metadata;
 
-/// <summary>
-/// A class for representing the Tetris playing grid.
-/// </summary>
 class TetrisGrid
 {
-    /// The sprite of a single empty cell in the grid.
     Texture2D emptyCell;
 
-    /// The position at which this TetrisGrid should be drawn.
     Vector2 position;
 
-    /// The number of grid elements in the x-direction.
-    public int Width { get { return 10; } }
-   
-    /// The number of grid elements in the y-direction.
-    public int Height { get { return 20; } }
+    // Defining grid size
+    public const int Width = 10;
+    public const int Height = 20;
 
-    /// <summary>
-    /// Creates a new TetrisGrid.
-    /// </summary>
-    /// <param name="b"></param>
+    // 2D array to hold info about each cell.
+    public static GridCellInfo[,] Grid;
+
     public TetrisGrid()
     {
         emptyCell = TetrisGame.ContentManager.Load<Texture2D>("block");
         position = Vector2.Zero;
         Clear();
+
+        Grid = new GridCellInfo[10, 20];
+
     }
 
-    /// <summary>
-    /// Draws the grid on the screen.
-    /// </summary>
-    /// <param name="gameTime">An object with information about the time that has passed in the game.</param>
-    /// <param name="spriteBatch">The SpriteBatch used for drawing sprites and text.</param>
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
+        // Drawing the grid of empty cells.
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.White);
+
+            }
+        }
+
+        // Let's fill in the cells that are occupied.
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                DrawOccupiedCell(spriteBatch, emptyCell, Width, Height);
+            }
+        }
+
     }
 
-    /// <summary>
-    /// Clears the grid.
-    /// </summary>
+    private void DrawOccupiedCell(SpriteBatch spriteBatch, Texture2D cellTexture, int Width, int Height)
+    {
+        spriteBatch.Draw(cellTexture, new Vector2(Width * emptyCell.Width, Height * emptyCell.Height), Color.White);
+    }
     public void Clear()
     {
+
     }
+
+    public enum GridCellInfo
+    {
+        Empty,
+        Red,
+        Yellow,
+        Greem,
+        Blue
+    }
+
+
 }
 

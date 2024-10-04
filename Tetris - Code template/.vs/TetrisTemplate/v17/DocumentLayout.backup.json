@@ -28,7 +28,7 @@
               "RelativeDocumentMoniker": "TetrisTemplate\\TetrisGrid.cs",
               "ToolTip": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisGrid.cs",
               "RelativeToolTip": "TetrisTemplate\\TetrisGrid.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwBYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-04T05:58:07.655Z",
               "EditorCaption": ""
@@ -43,7 +43,8 @@
               "RelativeToolTip": "TetrisTemplate\\GameWorld.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAlwEEAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:38:51.901Z"
+              "WhenOpened": "2024-10-02T13:38:51.901Z",
+              "EditorCaption": ""
             }
           ]
         }
