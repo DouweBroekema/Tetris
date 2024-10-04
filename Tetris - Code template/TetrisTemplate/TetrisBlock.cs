@@ -22,7 +22,7 @@ namespace TetrisTemplate
         // Moving info
         private float startTime;
         private float durationGridMove = 1; // Gravity
-
+        private bool isMoving = true;
 
         public TetrisBlock()
         {
@@ -37,6 +37,7 @@ namespace TetrisTemplate
 
         public void Rotate(bool clockWise)
         {
+            if (!isMoving) return;
 
             currentRotation += 90;
             if (currentRotation >= 360) currentRotation = 0;
@@ -87,7 +88,7 @@ namespace TetrisTemplate
         {
             float currenTime = (float)TetrisGame.GameTime.TotalGameTime.TotalSeconds;
 
-            if(currenTime > startTime + durationGridMove)
+            if(currenTime > startTime + durationGridMove && isMoving)
             {
                 // Before moving let's set the occupied blocks cells to zero!
                 for (int x = 0; x < BlockInfo.GetLength(0); x++)
@@ -102,6 +103,7 @@ namespace TetrisTemplate
                 startTime = (float)TetrisGame.GameTime.TotalGameTime.TotalSeconds;
             }
 
+            if (BlockPosition.Y >= TetrisGrid.Height - BlockInfo.GetLength(1)) isMoving = false;
         }
 
         private void DrawBlock()

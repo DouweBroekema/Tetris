@@ -38,8 +38,7 @@
               "RelativeToolTip": "TetrisTemplate\\TetrisGame.cs",
               "ViewState": "AgIAACIAAAAAAAAAAAAkwDUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T07:57:15.389Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-04T07:57:15.389Z"
             },
             {
               "$type": "Document",
@@ -51,8 +50,7 @@
               "RelativeToolTip": "TetrisTemplate\\TetrisGrid.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAYwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-04T05:58:07.655Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-04T05:58:07.655Z"
             },
             {
               "$type": "Document",
@@ -62,7 +60,7 @@
               "RelativeDocumentMoniker": "TetrisTemplate\\TetrisBlock.cs",
               "ToolTip": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisBlock.cs",
               "RelativeToolTip": "TetrisTemplate\\TetrisBlock.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAAwGoAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAewCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-04T07:04:51.571Z",
               "EditorCaption": ""
@@ -77,8 +75,7 @@
               "RelativeToolTip": "TetrisTemplate\\GameWorld.cs",
               "ViewState": "AgIAADcAAAAAAAAAAAAowDsAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:38:51.901Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T13:38:51.901Z"
             }
           ]
         }
