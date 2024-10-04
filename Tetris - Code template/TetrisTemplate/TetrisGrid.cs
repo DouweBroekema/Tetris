@@ -18,6 +18,7 @@ namespace TetrisTemplate
         // 2D array to hold info about each cell.
         public static GridCellInfo[,] Grid;
 
+
         public TetrisGrid()
         {
             emptyCell = TetrisGame.ContentManager.Load<Texture2D>("block");

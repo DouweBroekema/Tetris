@@ -8,17 +8,10 @@ class TetrisGame : Game
     SpriteBatch spriteBatch;
     InputHelper inputHelper;
     GameWorld gameWorld;
-
-    /// <summary>
-    /// A static reference to the ContentManager object, used for loading assets.
-    /// </summary>
     public static ContentManager ContentManager { get; private set; }
-    
-
-    /// <summary>
-    /// A static reference to the width and height of the screen.
-    /// </summary>
     public static Point ScreenSize { get; private set; }
+
+    public static GameTime GameTime;
 
     [STAThread]
     static void Main(string[] args)
@@ -58,9 +51,13 @@ class TetrisGame : Game
 
     protected override void Update(GameTime gameTime)
     {
+        TetrisGame.GameTime = gameTime;
         inputHelper.Update(gameTime);
         gameWorld.HandleInput(gameTime, inputHelper);
         gameWorld.Update(gameTime);
+
+
+       
     }
 
     protected override void Draw(GameTime gameTime)

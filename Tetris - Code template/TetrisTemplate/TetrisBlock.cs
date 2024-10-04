@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -13,23 +14,14 @@ namespace TetrisTemplate
 
     public class TetrisBlock
     {
+        // Block data info
         public bool[,] BlockInfo = new bool[4, 4];
-        /// <summary>
-        /// 0100
-        /// 0100
-        /// 0100
-        /// 0100
-        /// 
-        /// 0000
-        /// 1111
-        /// 0000
-        /// 0000
-        /// 
-        /// 
-        /// 
-        /// </summary>
-
         private int currentRotation;
+        public Vector2 BlockPosition;
+
+        // Moving info
+        private float startTime;
+        private float durationGridMove = 1; // Gravity
 
 
         public TetrisBlock()
@@ -48,10 +40,10 @@ namespace TetrisTemplate
 
             currentRotation += 90;
             if (currentRotation >= 360) currentRotation = 0;
-            Debug.WriteLine(currentRotation);
 
             bool[,] tempBlock = new bool[4, 4];
 
+            // Rotating block
             for (int x = 0; x < BlockInfo.GetLength(0); x++)
             {
                 for (int y = 0; y < BlockInfo.GetLength(1); y++)
@@ -65,7 +57,7 @@ namespace TetrisTemplate
             BlockInfo = tempBlock;
             tempBlock = new bool[4, 4];
 
-            //if (currentRotation >= 180 || currentRotation == 0)
+            // Flipping block if necesarry
             if (currentRotation >= 180 || currentRotation == 0)
             {
                 for (int x = 0; x < BlockInfo.GetLength(0); x++)
@@ -82,17 +74,47 @@ namespace TetrisTemplate
             }
 
 
-            for (int x = 0; x < BlockInfo.GetLength(0); x++)
+
+        }
+
+        public void UpdateBlock()
+        {
+            Move();
+            DrawBlock();
+        }
+
+        private void Move()
+        {
+            float currenTime = (float)TetrisGame.GameTime.TotalGameTime.TotalSeconds;
+
+            if(currenTime > startTime + durationGridMove)
             {
-                for(int y = 0; y < BlockInfo.GetLength(1); y++)
+                // Before moving let's set the occupied blocks cells to zero!
+                for (int x = 0; x < BlockInfo.GetLength(0); x++)
                 {
-                    if (BlockInfo[x, y] == true) TetrisGrid.Grid[x + 5, y + 5] = TetrisGrid.GridCellInfo.Occupied;
-                    else TetrisGrid.Grid[x + 5, y + 5] = TetrisGrid.GridCellInfo.Empty;
+                    for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                    {                
+                       TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Empty;
+                    }
                 }
+
+                BlockPosition += new Vector2(0, 1);
+                startTime = (float)TetrisGame.GameTime.TotalGameTime.TotalSeconds;
             }
 
-            Debug.WriteLine("Rotating...");
+        }
 
+        private void DrawBlock()
+        {
+            // Setting block data.
+            for (int x = 0; x < BlockInfo.GetLength(0); x++)
+            {
+                for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                {
+                    if (BlockInfo[x, y] == true) TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Occupied;
+                    else TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Empty;
+                }
+            }
         }
     }
 }

@@ -57,8 +57,7 @@ class GameWorld
             tetrisBlock.Rotate(true);
         }
 
-        //tetrisBlock.Rotate(true);
-
+        tetrisBlock.UpdateBlock();
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
