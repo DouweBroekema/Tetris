@@ -1,42 +1,32 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
+using TetrisTemplate;
 
-/// <summary>
-/// A class for representing the game world.
-/// This contains the grid, the falling block, and everything else that the player can see/do.
-/// </summary>
 class GameWorld
 {
-    /// <summary>
-    /// An enum for the different game states that the game can have.
-    /// </summary>
-    enum GameState
+
+    public static Random Random { get { return random; } }
+    static Random random;
+    SpriteFont font;
+
+
+    // Classes
+    TetrisGrid grid;
+    public static InputHelper InputHelper = new InputHelper();
+    TetrisBlock tetrisBlock;
+
+
+    // GameState
+    public static GameState gameState;
+    public enum GameState
     {
         Playing,
         GameOver
     }
 
-    /// <summary>
-    /// The random-number generator of the game.
-    /// </summary>
-    public static Random Random { get { return random; } }
-    static Random random;
 
-    /// <summary>
-    /// The main font of the game.
-    /// </summary>
-    SpriteFont font;
-
-    /// <summary>
-    /// The current game state.
-    /// </summary>
-    GameState gameState;
-
-    /// <summary>
-    /// The main grid of the game.
-    /// </summary>
-    TetrisGrid grid;
 
     public GameWorld()
     {
@@ -50,14 +40,25 @@ class GameWorld
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
         grid = new TetrisGrid();
+
+        tetrisBlock = new TetrisBlock();
+
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
     {
+        InputHelper.Update(gameTime);
     }
 
     public void Update(GameTime gameTime)
     {
+        if (InputHelper.KeyPressed(Keys.Space))
+        {
+            tetrisBlock.Rotate(true);
+        }
+
+        //tetrisBlock.Rotate(true);
+
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

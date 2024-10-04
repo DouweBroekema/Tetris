@@ -2,67 +2,73 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Reflection.Metadata;
 
-class TetrisGrid
+namespace TetrisTemplate
 {
-    Texture2D emptyCell;
 
-    Vector2 position;
-
-    // Defining grid size
-    public const int Width = 10;
-    public const int Height = 20;
-
-    // 2D array to hold info about each cell.
-    public static GridCellInfo[,] Grid;
-
-    public TetrisGrid()
+    class TetrisGrid
     {
-        emptyCell = TetrisGame.ContentManager.Load<Texture2D>("block");
-        position = Vector2.Zero;
-        Clear();
+        Texture2D emptyCell;
 
-        Grid = new GridCellInfo[10, 20];
+        Vector2 position;
 
-    }
+        // Defining grid size
+        public const int Width = 10;
+        public const int Height = 20;
 
-    public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-    {
-        // Drawing the grid of empty cells.
-        for (int x = 0; x < Width; x++)
+        // 2D array to hold info about each cell.
+        public static GridCellInfo[,] Grid;
+
+        public TetrisGrid()
         {
-            for (int y = 0; y < Height; y++)
-            {
-                spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.White);
+            emptyCell = TetrisGame.ContentManager.Load<Texture2D>("block");
+            position = Vector2.Zero;
+            Clear();
 
-            }
+            Grid = new GridCellInfo[Width, Height];
+
         }
 
-        // Let's fill in the cells that are occupied.
-        for (int x = 0; x < Width; x++)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            for (int y = 0; y < Height; y++)
+            // Drawing the grid of empty cells.
+            for (int x = 0; x < Width; x++)
             {
-                DrawOccupiedCell(spriteBatch, emptyCell, Width, Height);
+                for (int y = 0; y < Height; y++)
+                {
+                    spriteBatch.Draw(emptyCell, new Vector2(x * emptyCell.Width, y * emptyCell.Height), Color.White);
+
+                }
             }
+
+            // Let's fill in the cells that are occupied.
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    DrawOccupiedCell(spriteBatch, emptyCell, x, y);
+                }
+            }
+
         }
 
+        private void DrawOccupiedCell(SpriteBatch spriteBatch, Texture2D cellTexture, int Width, int Height)
+        {
+            if (Grid[Width, Height] == GridCellInfo.Empty) spriteBatch.Draw(cellTexture, new Vector2(Width * emptyCell.Width, Height * emptyCell.Height), Color.White);
+            else spriteBatch.Draw(cellTexture, new Vector2(Width * emptyCell.Width, Height * emptyCell.Height), Color.Black);
+
+        }
+        public void Clear()
+        {
+
+        }
+
+        public enum GridCellInfo
+        {
+            Empty,
+            Occupied
+        }
+
+
     }
-
-    private void DrawOccupiedCell(SpriteBatch spriteBatch, Texture2D cellTexture, int Width, int Height)
-    {
-        spriteBatch.Draw(cellTexture, new Vector2(Width * emptyCell.Width, Height * emptyCell.Height), Color.White);
-    }
-    public void Clear()
-    {
-
-    }
-
-    public enum GridCellInfo
-    {
-        Empty,
-        Occupied
-    }
-
-
 }
 

@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|c:\\users\\belee\\documents\\vak_gameprogramming\\prac\\prac2\\tetris\\tetris - code template\\tetristemplate\\tetrisblock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|solutionrelative:tetristemplate\\tetrisblock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|c:\\users\\belee\\documents\\vak_gameprogramming\\prac\\prac2\\tetris\\tetris - code template\\tetristemplate\\tetrisgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|solutionrelative:tetristemplate\\tetrisgrid.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|c:\\users\\belee\\documents\\vak_gameprogramming\\prac\\prac2\\tetris\\tetris - code template\\tetristemplate\\gameworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|solutionrelative:tetristemplate\\gameworld.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|c:\\users\\belee\\documents\\vak_gameprogramming\\prac\\prac2\\tetris\\tetris - code template\\tetristemplate\\tetrisgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{80527DF2-F9E3-4571-8A4B-DA4DC3A0A971}|TetrisTemplate\\TetrisTemplate.csproj|solutionrelative:tetristemplate\\tetrisgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "TetrisGame.cs",
+              "DocumentMoniker": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisGame.cs",
+              "RelativeDocumentMoniker": "TetrisTemplate\\TetrisGame.cs",
+              "ToolTip": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisGame.cs",
+              "RelativeToolTip": "TetrisTemplate\\TetrisGame.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAtwD4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:57:15.389Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "TetrisGrid.cs",
               "DocumentMoniker": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisGrid.cs",
               "RelativeDocumentMoniker": "TetrisTemplate\\TetrisGrid.cs",
               "ToolTip": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisGrid.cs",
               "RelativeToolTip": "TetrisTemplate\\TetrisGrid.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAQwBYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwCgAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-04T05:58:07.655Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "TetrisBlock.cs",
+              "DocumentMoniker": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisBlock.cs",
+              "RelativeDocumentMoniker": "TetrisTemplate\\TetrisBlock.cs",
+              "ToolTip": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisBlock.cs",
+              "RelativeToolTip": "TetrisTemplate\\TetrisBlock.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAqwEcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T07:04:51.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "GameWorld.cs",
               "DocumentMoniker": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\GameWorld.cs",
               "RelativeDocumentMoniker": "TetrisTemplate\\GameWorld.cs",
               "ToolTip": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\GameWorld.cs",
               "RelativeToolTip": "TetrisTemplate\\GameWorld.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAlwEEAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAiwDAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:38:51.901Z"
+              "WhenOpened": "2024-10-02T13:38:51.901Z",
+              "EditorCaption": ""
             }
           ]
         }
