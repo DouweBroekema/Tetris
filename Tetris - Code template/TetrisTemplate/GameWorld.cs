@@ -52,11 +52,26 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-        if (InputHelper.KeyPressed(Keys.Space))
+        if (InputHelper.KeyPressed(Keys.D))
         {
             tetrisBlock.Rotate(true);
         }
-
+        if(InputHelper.KeyPressed(Keys.A))
+        {
+            tetrisBlock.Rotate(false);
+        }
+        if (InputHelper.KeyPressed(Keys.Left))
+        {
+            tetrisBlock.MoveBlock(new Vector2(-1, 0));
+        }
+        if (InputHelper.KeyPressed(Keys.Right))
+        {
+            tetrisBlock.MoveBlock(new Vector2(1, 0));
+        }
+        if (InputHelper.KeyPressed(Keys.Down))
+        {
+            tetrisBlock.MoveBlock(new Vector2(0, 1));
+        }
         tetrisBlock.UpdateBlock();
     }
 
