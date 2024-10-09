@@ -4,8 +4,8 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Belee/Documents/Vak_Gameprogramming/Prac/Prac2/Tetris/Tetris - Code template/TetrisTemplate/Content/SpelFont.spritefont</File>
-    <File>C:/Users/Belee/Documents/Vak_Gameprogramming/Prac/Prac2/Tetris/Tetris - Code template/TetrisTemplate/Content/block.png</File>
+    <File>C:/Users/basvd/OneDrive/Bureaublad/Monogame school/Fase 2 - tetris/Tetris/Tetris/Tetris - Code template/TetrisTemplate/Content/SpelFont.spritefont</File>
+    <File>C:/Users/basvd/OneDrive/Bureaublad/Monogame school/Fase 2 - tetris/Tetris/Tetris/Tetris - Code template/TetrisTemplate/Content/block.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

@@ -66,7 +66,7 @@ namespace TetrisTemplate
 
                 tempBlock = new bool[4, 4];
 
-
+                Debug.WriteLine(currentRotation);
 
                 // Flipping block if necesarry
                 if (currentRotation >= 180 || currentRotation == 0)
@@ -167,6 +167,7 @@ namespace TetrisTemplate
                     if (TetrisGrid.Grid[(int)(x + newPosition.X), (int)(y + newPosition.Y)] == TetrisGrid.GridCellInfo.Occupied)
                     {
                         if (BlockInfo[x, y]) continue;
+                        if (tempBlock[x, y]) continue;
                         // We're trying to move our block to an already occupied position!
                         return false;
                     }
