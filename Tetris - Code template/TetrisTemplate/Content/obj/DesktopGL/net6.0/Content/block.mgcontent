@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/basvd/OneDrive/Bureaublad/Monogame school/Fase 2 - tetris/Tetris/Tetris/Tetris - Code template/TetrisTemplate/Content/block.png</SourceFile>
-  <SourceTime>2024-10-02T15:12:01.5117103+02:00</SourceTime>
-  <DestFile>C:/Users/basvd/OneDrive/Bureaublad/Monogame school/Fase 2 - tetris/Tetris/Tetris/Tetris - Code template/TetrisTemplate/Content/bin/DesktopGL/Content/block.xnb</DestFile>
-  <DestTime>2024-10-06T14:17:49.601211+02:00</DestTime>
+  <SourceFile>C:/Users/Belee/Documents/Vak_Gameprogramming/Prac/Prac2/Tetris/Tetris - Code template/TetrisTemplate/Content/block.png</SourceFile>
+  <SourceTime>2024-10-02T15:38:24.4136122+02:00</SourceTime>
+  <DestFile>C:/Users/Belee/Documents/Vak_Gameprogramming/Prac/Prac2/Tetris/Tetris - Code template/TetrisTemplate/Content/bin/DesktopGL/Content/block.xnb</DestFile>
+  <DestTime>2024-10-07T07:30:16.33398+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T13:44:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "T3PI6GJXvC3cDkGkzVP0XHQze3RyiiP2ckb+lhXv+fmbmBoszgY9JYon/41Eb5sXo6rq7ch/4avZ8vAHd1K4/A==",
+  "dgSpecHash": "a2+2j/nCXyc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\basvd\\OneDrive\\Bureaublad\\Monogame school\\Fase 2 - tetris\\Tetris\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisTemplate.csproj",
+  "projectFilePath": "C:\\Users\\Belee\\Documents\\Vak_Gameprogramming\\Prac\\Prac2\\Tetris\\Tetris - Code template\\TetrisTemplate\\TetrisTemplate.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\basvd\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
-    "C:\\Users\\basvd\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    "C:\\Users\\Belee\\.nuget\\packages\\monogame.content.builder.task\\3.8.1.303\\monogame.content.builder.task.3.8.1.303.nupkg.sha512",
+    "C:\\Users\\Belee\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.1.303\\monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
   ],
   "logs": []
 }
