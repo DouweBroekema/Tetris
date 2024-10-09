@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -24,6 +25,7 @@ namespace TetrisTemplate
         private float durationGridMove = 1; // Gravity
         private bool isMoving = true;
         private bool canMove = true;
+
 
         public TetrisBlock()
         {
@@ -60,6 +62,8 @@ namespace TetrisTemplate
 
                 // Checking if position is valid before we apply our rotation.
                 if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
+                //BlockInfo = tempBlock;
+
                 tempBlock = new bool[4, 4];
 
 
@@ -77,6 +81,7 @@ namespace TetrisTemplate
                     }
 
                     if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
+                    //BlockInfo = tempBlock;
                 }
 
             }
@@ -142,29 +147,30 @@ namespace TetrisTemplate
                 {
                     // Check if this block is an occupied block inside of our own block.
                     // If not we don't care about collision because it's an empty cell.
-                    if (!tempBlock[x, y]) return false;
+                    if (!tempBlock[x, y]) continue;
 
-                    // Check if we collide with a block
-                    if (TetrisGrid.Grid[(int)(x + newPosition.X), (int)(y + newPosition.Y)] == TetrisGrid.GridCellInfo.Occupied)
-                    {
-                        // We're trying to move our block to an already occupied position!
-                        return false;
-                    }
-                    
                     // Check if we're trying to exceed the tetris grid width.
-                    if((x + newPosition.X) > TetrisGrid.Width || x + newPosition.X < 0)
+                    if ((x + newPosition.X) >= TetrisGrid.Width || x + newPosition.X < 0)
                     {
                         // We're trying to exceed the width of our tetris grid.
                         return false;
                     }
 
                     // Check if we're trying to exceed the tetris grid height
-                    if ((y + newPosition.Y) > TetrisGrid.Height || y + newPosition.Y < 0)
+                    if ((y + newPosition.Y) >= TetrisGrid.Height || y + newPosition.Y < 0)
                     {
                         // We're trying to exceed the height of our tetris grid.
                         return false;
                     }
 
+                    // Check if we collide with a block
+                    if (TetrisGrid.Grid[(int)(x + newPosition.X), (int)(y + newPosition.Y)] == TetrisGrid.GridCellInfo.Occupied)
+                    {
+                        if (BlockInfo[x, y]) continue;
+                        // We're trying to move our block to an already occupied position!
+                        return false;
+                    }
+                    
                 }
             }
 
@@ -210,8 +216,8 @@ namespace TetrisTemplate
                     else
                     {
                         // Check if empty spot is on the grid. If not we don't care about setting empty.
-                        if (x + BlockPosition.X >= TetrisGrid.Width || y + BlockPosition.Y >= TetrisGrid.Height) return;
-                        if (x + BlockPosition.X < 0 || y + BlockPosition.Y < 0) return;
+                        if (x + BlockPosition.X >= TetrisGrid.Width || y + BlockPosition.Y >= TetrisGrid.Height) continue;
+                        if (x + BlockPosition.X < 0 || y + BlockPosition.Y < 0) continue;
 
                         TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Empty;
                     }
@@ -227,8 +233,8 @@ namespace TetrisTemplate
                 for (int y = 0; y < BlockInfo.GetLength(1); y++)
                 {
                     // Check if empty spot is on the grid. If not we don't care about setting empty.
-                    if (x + BlockPosition.X >= TetrisGrid.Width || y + BlockPosition.Y >= TetrisGrid.Height) return;
-                    if (x + BlockPosition.X < 0 || y + BlockPosition.Y < 0) return;
+                    if (x + BlockPosition.X >= TetrisGrid.Width || y + BlockPosition.Y >= TetrisGrid.Height) continue;
+                    if (x + BlockPosition.X < 0 || y + BlockPosition.Y < 0) continue;
 
                     TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Empty;
                 }
