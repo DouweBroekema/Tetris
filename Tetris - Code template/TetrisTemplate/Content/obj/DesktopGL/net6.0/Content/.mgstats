@@ -1,1 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/Belee/Documents/Vak_Gameprogramming/Prac/Prac2/Tetris/Tetris - Code template/TetrisTemplate/Content/block.png","C:/Users/Belee/Documents/Vak_Gameprogramming/Prac/Prac2/Tetris/Tetris - Code template/TetrisTemplate/Content/bin/DesktopGL/Content/block.xnb","TextureProcessor","Texture2DContent",338,3685,0.037109
+"C:/Users/Belee/Documents/Vak_Gameprogramming/Prac/Prac2/Tetris/Tetris - Code template/TetrisTemplate/Content/SpelFont.spritefont","C:/Users/Belee/Documents/Vak_Gameprogramming/Prac/Prac2/Tetris/Tetris - Code template/TetrisTemplate/Content/bin/DesktopGL/Content/SpelFont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0.4029145

@@ -32,10 +32,6 @@ class GameWorld
     {
         random = new Random();
         gameState = GameState.Playing;
-        //comment
-        //extra comment
-
-        // Test 123
          Random newrandom = new Random();
         font = TetrisGame.ContentManager.Load<SpriteFont>("SpelFont");
 
@@ -52,26 +48,6 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-        if (InputHelper.KeyPressed(Keys.D))
-        {
-            tetrisBlock.Rotate(true);
-        }
-        if(InputHelper.KeyPressed(Keys.A))
-        {
-            tetrisBlock.Rotate(false);
-        }
-        if (InputHelper.KeyPressed(Keys.Left))
-        {
-            tetrisBlock.MoveBlock(new Vector2(-1, 0));
-        }
-        if (InputHelper.KeyPressed(Keys.Right))
-        {
-            tetrisBlock.MoveBlock(new Vector2(1, 0));
-        }
-        if (InputHelper.KeyPressed(Keys.Down))
-        {
-            tetrisBlock.MoveBlock(new Vector2(0, 1));
-        }
         tetrisBlock.UpdateBlock();
     }
 
@@ -80,6 +56,11 @@ class GameWorld
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
         spriteBatch.End();
+    }
+    public void SpawnNewBlock()
+    {
+        tetrisBlock = new TetrisBlock();
+        tetrisBlock.BlockPosition = Vector2.Zero;
     }
 
     public void Reset()

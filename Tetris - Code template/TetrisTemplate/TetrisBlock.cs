@@ -1,5 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework; 
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -26,6 +27,8 @@ namespace TetrisTemplate
         private bool isMoving = true;
         private bool canMove = true;
 
+        // References
+        public InputHelper inputHelper;
 
         public TetrisBlock()
         {
@@ -35,102 +38,36 @@ namespace TetrisTemplate
                 BlockInfo[0, i] = true;
             }
 
-
+            inputHelper = GameWorld.InputHelper;
         }
 
-        public void Rotate(bool clockWise)
+        private void InputDetection()
         {
-
-            if (clockWise)
+            if (inputHelper.KeyPressed(Keys.D))
             {
-                if (!isMoving) return;
-
-                currentRotation += 90;
-                if (currentRotation >= 360) currentRotation = 0;
-
-                bool[,] tempBlock = new bool[4, 4];
-
-                // Rotating block
-                for (int x = 0; x < BlockInfo.GetLength(0); x++)
-                {
-                    for (int y = 0; y < BlockInfo.GetLength(1); y++)
-                    {
-                        tempBlock[x, y] = BlockInfo[y, x];
-                    }
-
-                }
-
-                // Checking if position is valid before we apply our rotation.
-                if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
-                //BlockInfo = tempBlock;
-
-                tempBlock = new bool[4, 4];
-
-                Debug.WriteLine(currentRotation);
-
-                // Flipping block if necesarry
-                if (currentRotation >= 180 || currentRotation == 0)
-                {
-                    for (int x = 0; x < BlockInfo.GetLength(0); x++)
-                    {
-                        for (int y = 0; y < BlockInfo.GetLength(1); y++)
-                        {
-                            tempBlock[x, y] = BlockInfo[BlockInfo.GetLength(0) - 1 - x, y];
-                        }
-
-                    }
-
-                    if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
-                    //BlockInfo = tempBlock;
-                }
-
+               Rotate(true);
             }
-            else
+            if (inputHelper.KeyPressed(Keys.A))
             {
-                if (!isMoving) return;
-
-                currentRotation += 90;
-                if (currentRotation >= 360) currentRotation = 0;
-
-                bool[,] tempBlock = new bool[4, 4];
-
-                //Rotate block counterclockwise
-                for(int x = 0;x < BlockInfo.GetLength(0); x++)
-                {
-                    for (int y = 0;y < BlockInfo.GetLength(1); y++)
-                    {
-                        tempBlock[y, x] = BlockInfo[x, y];
-                    }
-                }
-
-                if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
-                tempBlock = new bool[4, 4];
-
-                // Flipping block if necesarry
-                if (currentRotation >= 90 || currentRotation <=270)
-                {
-                    for (int x = 0; x < BlockInfo.GetLength(0); x++)
-                    {
-                        for (int y = 0; y < BlockInfo.GetLength(1); y++)
-                        {
-                            tempBlock[x, y] = BlockInfo[x, BlockInfo.GetLength(1) -1 - y];
-                        }
-
-                    }
-
-                    // Checking if position is valid before we apply our rotation.
-                    if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
-
-                    Debug.WriteLine(currentRotation);
-                }
+                Rotate(false);
             }
-
-
-
+            if (inputHelper.KeyPressed(Keys.Left))
+            {
+                MoveBlock(new Vector2(-1, 0));
+            }
+            if (inputHelper.KeyPressed(Keys.Right))
+            {
+                MoveBlock(new Vector2(1, 0));
+            }
+            if (inputHelper.KeyPressed(Keys.Down))
+            {
+                MoveBlock(new Vector2(0, 1));
+            }
         }
 
         public void UpdateBlock()
         {
+            InputDetection();
             Move();
             DrawBlock();
         }
@@ -180,16 +117,7 @@ namespace TetrisTemplate
        
         }
 
-
-        public void MoveBlock(Vector2 direction)
-        {
-            //before we move the tetrisblock, we first set the currently occupied block cells to false/empty if they are within the tetris grid.
-            ResetPreviousBlock();
-
-            if (PositionValid(BlockInfo, BlockPosition + direction)) BlockPosition += direction;
-
-        }
-
+        // Move block down vertically
         private void Move()
         {
             float currenTime = (float)TetrisGame.GameTime.TotalGameTime.TotalSeconds;
@@ -199,12 +127,122 @@ namespace TetrisTemplate
                 // Before moving let's set the occupied blocks cells to zero!
                 ResetPreviousBlock();
 
-                BlockPosition += new Vector2(0, 1);
+                if(PositionValid(BlockInfo, BlockPosition + new Vector2(0, 1)))
+                    BlockPosition += new Vector2(0, 1);
+
                 startTime = (float)TetrisGame.GameTime.TotalGameTime.TotalSeconds;
+
             }
 
-            if (BlockPosition.Y >= TetrisGrid.Height - BlockInfo.GetLength(1)) isMoving = false;
+            // Stop moving the block down.
+            if (!PositionValid(BlockInfo, BlockPosition + new Vector2(0, 1))) isMoving = false;
+
         }
+
+
+
+        // Move block horizontally
+        public void MoveBlock(Vector2 direction)
+        {
+            if (!isMoving) return;
+
+            //before we move the tetrisblock, we first set the currently occupied block cells to false/empty if they are within the tetris grid.
+            ResetPreviousBlock();
+
+            if (PositionValid(BlockInfo, BlockPosition + direction)) BlockPosition += direction;
+
+        }
+        public void Rotate(bool clockWise)
+        {
+            if (!isMoving) return;
+
+            if (clockWise)
+            {
+
+                currentRotation += 90;
+                if (currentRotation >= 360) currentRotation = 0;
+
+                bool[,] tempBlock = new bool[4, 4];
+
+                // Rotating block
+                for (int x = 0; x < BlockInfo.GetLength(0); x++)
+                {
+                    for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                    {
+                        tempBlock[x, y] = BlockInfo[y, x];
+                    }
+
+                }
+
+                // Checking if position is valid before we apply our rotation.
+                if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
+                //BlockInfo = tempBlock;
+
+                tempBlock = new bool[4, 4];
+
+                Debug.WriteLine(currentRotation);
+
+                // Flipping block if necesarry
+                if (currentRotation >= 180 || currentRotation == 0)
+                {
+                    for (int x = 0; x < BlockInfo.GetLength(0); x++)
+                    {
+                        for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                        {
+                            tempBlock[x, y] = BlockInfo[BlockInfo.GetLength(0) - 1 - x, y];
+                        }
+
+                    }
+
+                    if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
+                    //BlockInfo = tempBlock;
+                }
+
+            }
+            else
+            {
+
+
+                currentRotation += 90;
+                if (currentRotation >= 360) currentRotation = 0;
+
+                bool[,] tempBlock = new bool[4, 4];
+
+                //Rotate block counterclockwise
+                for (int x = 0; x < BlockInfo.GetLength(0); x++)
+                {
+                    for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                    {
+                        tempBlock[y, x] = BlockInfo[x, y];
+                    }
+                }
+
+                if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
+                tempBlock = new bool[4, 4];
+
+                // Flipping block if necesarry
+                if (currentRotation >= 90 || currentRotation <= 270)
+                {
+                    for (int x = 0; x < BlockInfo.GetLength(0); x++)
+                    {
+                        for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                        {
+                            tempBlock[x, y] = BlockInfo[x, BlockInfo.GetLength(1) - 1 - y];
+                        }
+
+                    }
+
+                    // Checking if position is valid before we apply our rotation.
+                    if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
+
+                    Debug.WriteLine(currentRotation);
+                }
+            }
+
+
+
+        }
+
 
         private void DrawBlock()
         {
@@ -225,7 +263,6 @@ namespace TetrisTemplate
                 }
             }
         }
-
         private void ResetPreviousBlock()
         {
             // Setting block data.
