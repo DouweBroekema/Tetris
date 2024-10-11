@@ -15,7 +15,7 @@ class GameWorld
     // Classes
     TetrisGrid grid;
     public static InputHelper InputHelper = new InputHelper();
-    TetrisBlock tetrisBlock;
+    public static TetrisBlock tetrisBlock;
 
 
     // GameState
@@ -57,7 +57,7 @@ class GameWorld
         grid.Draw(gameTime, spriteBatch);
         spriteBatch.End();
     }
-    public void SpawnNewBlock()
+    public static void SpawnNewBlock()
     {
         tetrisBlock = new TetrisBlock();
         tetrisBlock.BlockPosition = Vector2.Zero;

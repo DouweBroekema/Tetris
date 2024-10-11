@@ -4,8 +4,10 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
@@ -103,10 +105,9 @@ namespace TetrisTemplate
                     // Check if we collide with a block
                     if (TetrisGrid.Grid[(int)(x + newPosition.X), (int)(y + newPosition.Y)] == TetrisGrid.GridCellInfo.Occupied)
                     {
-                        if (BlockInfo[x, y]) continue;
-                        if (tempBlock[x, y]) continue;
-                        // We're trying to move our block to an already occupied position!
-                        return false;
+
+                        if (OccupiedCellIsWithinBlock(x, y, newPosition)) continue;
+                        else return false;
                     }
                     
                 }
@@ -116,6 +117,26 @@ namespace TetrisTemplate
             return true;
        
         }
+        private bool OccupiedCellIsWithinBlock(int x, int y, Vector2 newPosition)
+        {
+            // Returns true when it shouldm't. Says block is occupied by own block when not the case
+
+            for (int x2 = 0; x2 < BlockInfo.GetLength(0); x2++)
+            {
+                for (int y2 = 0; y2 < BlockInfo.GetLength(1); y2++)
+                {
+                    if (new Vector2(x + newPosition.X, y + newPosition.Y) == new Vector2(x2 + BlockPosition.X, y2 + BlockPosition.Y) && BlockInfo[x2,y2])
+                    {
+                        // Block we think is occupied is not actually occupied but part of our own block.
+                        return true;
+                    }
+
+
+                }
+            }
+
+            return false;
+        }
 
         // Move block down vertically
         private void Move()
@@ -124,18 +145,24 @@ namespace TetrisTemplate
 
             if(currenTime > startTime + durationGridMove && isMoving)
             {
-                // Before moving let's set the occupied blocks cells to zero!
-                ResetPreviousBlock();
 
-                if(PositionValid(BlockInfo, BlockPosition + new Vector2(0, 1)))
+                if (PositionValid(BlockInfo, BlockPosition + new Vector2(0, 1)))
+                {
+                    // Before moving let's set the occupied blocks cells to zero!
+                    ResetPreviousBlock();
                     BlockPosition += new Vector2(0, 1);
+                }
 
                 startTime = (float)TetrisGame.GameTime.TotalGameTime.TotalSeconds;
 
             }
 
             // Stop moving the block down.
-            if (!PositionValid(BlockInfo, BlockPosition + new Vector2(0, 1))) isMoving = false;
+            if (!PositionValid(BlockInfo, BlockPosition + new Vector2(0, 1)))
+            {
+                isMoving = false;
+                GameWorld.SpawnNewBlock();
+            }
 
         }
 
@@ -146,21 +173,22 @@ namespace TetrisTemplate
         {
             if (!isMoving) return;
 
-            //before we move the tetrisblock, we first set the currently occupied block cells to false/empty if they are within the tetris grid.
-            ResetPreviousBlock();
+            if (PositionValid(BlockInfo, BlockPosition + direction))
+            {
+                //before we move the tetrisblock, we first set the currently occupied block cells to false/empty if they are within the tetris grid.
+                ResetPreviousBlock();
 
-            if (PositionValid(BlockInfo, BlockPosition + direction)) BlockPosition += direction;
+                BlockPosition += direction;
+            }
 
         }
+
         public void Rotate(bool clockWise)
         {
             if (!isMoving) return;
 
             if (clockWise)
             {
-
-                currentRotation += 90;
-                if (currentRotation >= 360) currentRotation = 0;
 
                 bool[,] tempBlock = new bool[4, 4];
 
@@ -175,36 +203,46 @@ namespace TetrisTemplate
                 }
 
                 // Checking if position is valid before we apply our rotation.
-                if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
-                //BlockInfo = tempBlock;
-
-                tempBlock = new bool[4, 4];
-
-                Debug.WriteLine(currentRotation);
-
-                // Flipping block if necesarry
-                if (currentRotation >= 180 || currentRotation == 0)
+                if (PositionValid(tempBlock, BlockPosition))
                 {
-                    for (int x = 0; x < BlockInfo.GetLength(0); x++)
+                    ResetPreviousBlock();
+                    BlockInfo = tempBlock;
+
+                    currentRotation += 90;
+                    if (currentRotation >= 360) currentRotation = 0;
+
+                    tempBlock = new bool[4, 4];
+
+                    Debug.WriteLine(currentRotation);
+
+                    // Flipping block if necesarry
+                    if (currentRotation >= 180 || currentRotation == 0)
                     {
-                        for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                        for (int x = 0; x < BlockInfo.GetLength(0); x++)
                         {
-                            tempBlock[x, y] = BlockInfo[BlockInfo.GetLength(0) - 1 - x, y];
+                            for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                            {
+                                tempBlock[x, y] = BlockInfo[BlockInfo.GetLength(0) - 1 - x, y];
+                            }
+
+                        }
+
+                        if (PositionValid(tempBlock, BlockPosition))
+                        {
+                            ResetPreviousBlock();
+                            BlockInfo = tempBlock;
                         }
 
                     }
 
-                    if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
-                    //BlockInfo = tempBlock;
                 }
+
+
 
             }
             else
             {
 
-
-                currentRotation += 90;
-                if (currentRotation >= 360) currentRotation = 0;
 
                 bool[,] tempBlock = new bool[4, 4];
 
@@ -217,26 +255,40 @@ namespace TetrisTemplate
                     }
                 }
 
-                if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
-                tempBlock = new bool[4, 4];
-
-                // Flipping block if necesarry
-                if (currentRotation >= 90 || currentRotation <= 270)
+                if (PositionValid(tempBlock, BlockPosition))
                 {
-                    for (int x = 0; x < BlockInfo.GetLength(0); x++)
+                    ResetPreviousBlock();
+                    BlockInfo = tempBlock;
+
+                    currentRotation += 90;
+                    if (currentRotation >= 360) currentRotation = 0;
+
+                    tempBlock = new bool[4, 4];
+
+                    // Flipping block if necesarry
+                    if (currentRotation >= 90 || currentRotation <= 270)
                     {
-                        for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                        for (int x = 0; x < BlockInfo.GetLength(0); x++)
                         {
-                            tempBlock[x, y] = BlockInfo[x, BlockInfo.GetLength(1) - 1 - y];
+                            for (int y = 0; y < BlockInfo.GetLength(1); y++)
+                            {
+                                tempBlock[x, y] = BlockInfo[x, BlockInfo.GetLength(1) - 1 - y];
+                            }
+
                         }
 
+                        if (PositionValid(tempBlock, BlockPosition))
+                        {
+                            ResetPreviousBlock();
+                            BlockInfo = tempBlock;
+                        }
+
+
+                        Debug.WriteLine(currentRotation);
                     }
 
-                    // Checking if position is valid before we apply our rotation.
-                    if (PositionValid(tempBlock, BlockPosition)) BlockInfo = tempBlock;
-
-                    Debug.WriteLine(currentRotation);
                 }
+
             }
 
 
@@ -246,19 +298,19 @@ namespace TetrisTemplate
 
         private void DrawBlock()
         {
+            
             // Setting block data.
             for (int x = 0; x < BlockInfo.GetLength(0); x++)
             {
                 for (int y = 0; y < BlockInfo.GetLength(1); y++)
                 {
                     if (BlockInfo[x, y] == true) TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Occupied;
-                    else
+                    else if(isMoving)
                     {
                         // Check if empty spot is on the grid. If not we don't care about setting empty.
                         if (x + BlockPosition.X >= TetrisGrid.Width || y + BlockPosition.Y >= TetrisGrid.Height) continue;
                         if (x + BlockPosition.X < 0 || y + BlockPosition.Y < 0) continue;
-
-                        TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Empty;
+                        //TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Empty;
                     }
                 }
             }
@@ -273,6 +325,7 @@ namespace TetrisTemplate
                     // Check if empty spot is on the grid. If not we don't care about setting empty.
                     if (x + BlockPosition.X >= TetrisGrid.Width || y + BlockPosition.Y >= TetrisGrid.Height) continue;
                     if (x + BlockPosition.X < 0 || y + BlockPosition.Y < 0) continue;
+                    if (!BlockInfo[x, y]) continue;
 
                     TetrisGrid.Grid[x + (int)BlockPosition.X, y + (int)BlockPosition.Y] = TetrisGrid.GridCellInfo.Empty;
                 }
